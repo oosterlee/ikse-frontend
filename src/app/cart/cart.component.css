@@ -1,0 +1,55 @@
+.grid-container {
+  margin: 20px;
+}
+
+.dashboard-card {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+}
+
+.more-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.dashboard-card-content {
+  text-align: center;
+}
+
+.mat-card-image {
+  object-fit: cover;
+  height: calc(100% - 180px);
+}
+
+.button-right {
+  float: right;
+  /*max-width: 15%;*/
+}
+
+.text-overflow-ellipsis {
+  white-space: nowrap;
+  word-wrap: break-word;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  width: calc(100% - 120px);
+  display: inline-block;
+}
+
+.plusminus > button {
+  height: 51px;
+  padding: 0;
+  vertical-align: top;
+}
+
+.ordered {
+  color: green;
+  font-size: 20px;
+  text-align: center;
+}

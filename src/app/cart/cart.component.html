@@ -1,0 +1,35 @@
+<div class="grid-container" *ngIf="ordered">
+  <h1 class="mat-h1">Cart</h1>
+  <p class="ordered">Your products have been ordered!</p>
+</div>
+<div class="grid-container" *ngIf="!ordered">
+  <h1 class="mat-h1">Cart</h1>
+  <p *ngIf="cards.length <= 0">There are no products in your cart.</p>
+  <button mat-raised-button color="primary" *ngIf="cards.length > 0" (click)="orderItems()">Order</button>
+  <mat-grid-list [cols]="cols" rowHeight="4:5">
+    <mat-grid-tile *ngFor="let card of cards" [colspan]="card.cols || 1" [rowspan]="card.rows || 1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            {{card.title}}
+          </mat-card-title>
+        </mat-card-header>
+        <img mat-card-image onerror="this.src = 'https://source.unsplash.com/random?sig=2'" [src]="card.image || 'https://source.unsplash.com/random?sig=2'" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+          <p class="text-overflow-ellipsis">{{card.description}}</p>
+          <button mat-raised-button color="primary" class="button-right" (click)="deleteFromCart(card._id)"><mat-icon>delete</mat-icon></button>
+          <div class="plusminus">
+	          <button mat-raised-button (click)="cartAmountChange($event, card._id, card.amount-1)">-</button>
+				<mat-form-field appearance="fill">
+					<mat-label>Amount</mat-label>
+					<input type="number" matInput placeholder="Amount" [value]="card.amount" (change)="cartAmountChange($event, card._id)">
+				</mat-form-field>
+	          <button mat-raised-button (click)="cartAmountChange($event, card._id, card.amount+1)">+</button>
+          </div>
+          <p>Total price: &#8364;{{ (card.amount * card.price).toFixed(2) }}</p>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <button mat-raised-button color="primary" *ngIf="cards.length > 0" (click)="orderItems()">Order</button>
+</div>
